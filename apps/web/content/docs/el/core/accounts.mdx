@@ -33,8 +33,11 @@ base58. Οι περισσότεροι λογαριασμοί χρησιμοπο�
 
 ### Δημόσιο κλειδί
 
-Το παρακάτω παράδειγμα δείχνει πώς να χρησιμοποιήσετε το SDK της Solana για να
-δημιουργήσετε ένα keypair.
+Το παρακάτω παράδειγμα δείχνει πώς να χρησιμοποιήσετε το Solana SDK για να
+δημιουργήσετε ένα keypair. Ένα `Keypair` περιλαμβάνει:
+
+- Ένα δημόσιο κλειδί που λειτουργεί ως διεύθυνση λογαριασμού
+- Ένα ιδιωτικό κλειδί που χρησιμοποιείται για την υπογραφή συναλλαγών
 
 <CodeTabs storage="accounts" flags="r">
 
@@ -69,11 +72,11 @@ async fn main() {
 
 ### Program Derived Address
 
-Ένα [Program Derived Address](/docs/core/pda) (PDA) είναι μια διεύθυνση που
-προσδιορίζεται ντετερμινιστικά χρησιμοποιώντας ένα αναγνωριστικό προγράμματος
-και μία ή περισσότερες προαιρετικές εισόδους (seeds). Το παρακάτω παράδειγμα
-δείχνει πώς να χρησιμοποιήσετε το SDK της Solana για να δημιουργήσετε ένα
-Program Derived Address.
+Ένα [program derived address](/docs/core/pda) (PDA) είναι μια διεύθυνση που
+προκύπτει ντετερμινιστικά χρησιμοποιώντας ένα αναγνωριστικό προγράμματος και μία
+ή περισσότερες προαιρετικές εισόδους (seeds). Το παρακάτω παράδειγμα δείχνει πώς
+να χρησιμοποιήσετε το Solana SDK για να δημιουργήσετε ένα program derived
+address.
 
 <CodeTabs storage="accounts" flags="r">
 
@@ -133,15 +136,13 @@ async fn main() {
 
 <WithMentions>
 
-- [`lamports`](mention:lamports): Ο αριθμός των [lamports](#lamports) στον
+- [`lamports`](mention:lamports): Ο αριθμός των lamports στον λογαριασμό
+- [`data`](mention:data): Τα δεδομένα του λογαριασμού
+- [`owner`](mention:owner): Το αναγνωριστικό του προγράμματος που κατέχει τον
   λογαριασμό
-- [`data`](mention:data): Τα [δεδομένα](#data) του λογαριασμού
-- [`owner`](mention:owner): Το αναγνωριστικό του προγράμματος που
-  [κατέχει](#owner) τον λογαριασμό
-- [`executable`](mention:executable): Υποδεικνύει εάν ο λογαριασμός περιέχει
-  εκτελέσιμο [δυαδικό αρχείο](#executable)
-- [`rent_epoch`](mention:rent_epoch): Το παρωχημένο πεδίο
-  [epoch ενοικίου](#rent-epoch)
+- [`executable`](mention:executable): Υποδεικνύει αν ο λογαριασμός περιέχει
+  εκτελέσιμο δυαδικό αρχείο
+- [`rent_epoch`](mention:rent_epoch): Το παρωχημένο πεδίο εποχής rent
 
 ```rust title="Account"
 pub struct Account {
@@ -182,11 +183,6 @@ pub struct Account {
   κλείσει. (Το όνομα "rent" προέρχεται από το πλέον παρωχημένο πεδίο [rent
   epoch](#rent-epoch).)
 </Callout>
-
-(Δείτε τον τύπο
-[ελάχιστου υπολοίπου](https://github.com/anza-xyz/agave/blob/v2.1.13/sdk/rent/src/lib.rs#L93-L97)
-και τις εφαρμοστέες
-[σταθερές](https://github.com/anza-xyz/agave/blob/v2.1.13/sdk/rent/src/lib.rs#L47-L70).)
 
 ```rust !! title="Account Examples"
 // Example Token Mint Account
